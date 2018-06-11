@@ -13,12 +13,14 @@
   <li class="list-group-item"><strong>Created: </strong>{{ topic.created.strftime('%b %d, %Y  %H:%M') }}</li>
   <li class="list-group-item"><strong>Last updated: </strong>{{ topic.updated.strftime('%b %d, %Y  %H:%M') }}</li>
 </ul>
+<a href="/topics/{{ topic.key.id() }}/delete">Delete topic</a>
+<br>
 <br>
 
 <h3>Add new comment</h3>
 <br>
 
-  <form action="/topic/{{topic.key.id()}}/comment/add" method="post">
+  <form action="/topics/{{topic.key.id()}}/comment/add" method="post">
     <input type="hidden" name="csrf-token" value="{{ csrf_token }}">
         <div class="form-group">
             <label>Text</label>
