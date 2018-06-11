@@ -12,7 +12,35 @@
   <li class="list-group-item"><strong>Created by: </strong>{{ topic.author_email }}</li>
   <li class="list-group-item"><strong>Created: </strong>{{ topic.created.strftime('%b %d, %Y  %H:%M') }}</li>
   <li class="list-group-item"><strong>Last updated: </strong>{{ topic.updated.strftime('%b %d, %Y  %H:%M') }}</li>
-
 </ul>
+<br>
+
+<h3>Add new comment</h3>
+<br>
+
+  <form action="/topic/{{topic.key.id()}}/comment/add" method="post">
+    <input type="hidden" name="csrf-token" value="{{ csrf_token }}">
+        <div class="form-group">
+            <label>Text</label>
+            <input type="textarea" class="form-control" name="comment" required>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+<br>
+<h3>Comments</h3>
+<br>
+{% if comments %}
+  {% for com in comments %}
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Author: </strong>{{ com.author_email }}</li>
+      <li class="list-group-item"><strong>Comment: </strong>{{ com.content }}</li>
+      <li class="list-group-item"><strong>Added: </strong>{{ com.created.strftime('%b %d, %Y  %H:%M') }}</li>
+    </ul>
+  {% endfor %}
+{% else %}
+  <h4>No comments for this topic yet</h4>
+{% endif %}
 
 {% endblock content %}
