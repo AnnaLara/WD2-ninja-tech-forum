@@ -35,6 +35,11 @@
                 <li><a href="#">{{ user.email() }}</a></li>
                 <li><a href="/topic/add">Add new topic</a></li>
                 <li><a href="{{ logout_url }}">Logout</a></li>
+                <li>
+                  <form action="/subscribe" method="post">
+                    <button type="submit" class="btn btn-success">Subscribe to latest topics</button>
+                  </form>
+                </li>
              {% elif login_url %}
                 <li><a href="{{ login_url }}">Login</a></li>
              {% endif %}
@@ -63,5 +68,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/bootstrap/js/bootstrap.js"></script>
+    {% block scripts %}{% endblock scripts %}
 </body>
 </html>
